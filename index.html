@@ -1,40 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muneb Sher Dil - Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Muneb Sher Dil — Creative Showroom</title>
+  <meta name="description" content="Muneb Sher Dil — Creative Showroom. Projects: Windmill Energy, AI Assistant, Solar Dashboard, Weather App." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0d0d1a;
-      color: #e0e      align-items: center;
-      padding: 15px 40px;
-      z-index: 1000;
+    /* ---------- Theme (teal-cyan premium) ---------- */
+    :root{
+      --bg:#051018;               /* deep navy */
+      --panel: rgba(255,255,255,0.03);
+      --muted:#9fbfcf;
+      --text:#e8fbff;
+      --accent1:#24d6c0;         /* cyan */
+      --accent2:#2bb6ff;         /* teal-blue */
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --card-shadow: 0 12px 40px rgba(2,8,20,0.6);
     }
 
-    header h1 {
-      color: #8a2be2;
-      font-size: 1.5rem;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:
+        radial-gradient(800px 400px at 10% 10%, rgba(36,214,192,0.06), transparent 6%),
+        radial-gradient(600px 300px at 90% 80%, rgba(43,182,255,0.04), transparent 6%),
+        var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+      padding-bottom:80px;
     }
 
-    nav a {
-      color: #fff;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
+    /* ---------- Header ---------- */
+    header{
+      position:sticky; top:12px; z-index:1000;
+      max-width:1100px; margin:12px auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 14px; border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(8px);
+    }
+    .brand{display:flex; gap:12px; align-items:center}
+    .logo{
+      width:46px;height:46px;border-radius:10px;
+      display:grid;place-items:center;font-weight:800;color:#052;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:#012;
+      box-shadow: 0 8px 26px rgba(36,214,192,0.12);
+    }
+    .brand h1{font-size:16px;margin:0}
+    nav{display:flex; gap:18px; align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px;border-radius:8px}
+    nav a:hover{color:var(--text);background:var(--glass)}
+
+    /* ---------- Container ---------- */
+    .container{max-width:1100px;margin:28px auto;padding:0 18px}
+
+    /* ---------- Hero ---------- */
+    .hero{
+      padding:60px 28px;border-radius:16px; text-align:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 20px 60px rgba(2,8,20,0.6);
+      overflow:hidden;
+    }
+    .eyebrow{color:var(--accent1); font-weight:700; letter-spacing:1px; margin-bottom:8px}
+    .hero h2{font-size:44px; line-height:1.02; margin:8px 0; color:var(--accent2)}
+    .hero p{max-width:820px;margin:10px auto;color:var(--muted); font-size:18px}
+    .cta-row{margin-top:18px; display:flex; gap:12px; justify-content:center}
+    .btn{
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#021; padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700;
+      box-shadow: 0 12px 30px rgba(36,214,192,0.12); display:inline-flex; gap:10px; align-items:center;
+    }
+    .btn.secondary{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text)}
+
+    /* ---------- Projects Grid ---------- */
+    .section-title{ display:flex; align-items:center; gap:12px; margin:18px 0; }
+    .section-title h3{ margin:0; color:var(--accent2) }
+
+    .grid{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:18px;
     }
 
-    nav a:hover {
-      color: #8a2be2;
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding:18px;border-radius:14px; box-shadow: var(--card-shadow);
+      transition: transform 300ms ease, box-shadow 300ms ease;
+      position:relative; overflow:hidden; cursor:pointer;
+    }
+    .card:hover{ transform:translateY(-10px); box-shadow: 0 30px 80px rgba(2,8,20,0.75) }
+    .card img{ width:100%; height:160px; object-fit:cover; border-radius:10px; display:block; margin-bottom:12px }
+    .card h4{ margin:0 0 8px 0; color:var(--accent1) }
+    .card p{ color:var(--muted); font-size:14px }
+
+    /* ---------- Spinner (used on main page too) ---------- */
+    .spinner{
+      width:64px;height:64px;border-radius:50%;
+      border:6px solid rgba(255,255,255,0.08);
+      border-top:6px solid var(--accent1);
+      animation:spin 1.6s linear infinite, glow 2s ease-in-out infinite alternate;
+      margin:28px auto;
+    }
+    @keyframes spin{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+    @keyframes glow{ from{box-shadow:0 0 8px var(--accent1)} to{box-shadow:0 0 20px var(--accent2)} }
+
+    /* ---------- Footer ---------- */
+    footer{ margin-top:40px; text-align:center; color:var(--muted); padding:18px 0 }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:820px){
+      .hero h2{font-size:30px}
+      header{padding:10px}
+    }
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Top navigation">
+    <div class="brand">
+      <div class="logo">MS</div>
+      <div>
+        <h1>Muneb Sher Dil</h1>
+        <div style="font-size:12px;color:var(--muted)">Web Developer · Pakistan</div>
+      </div>
+    </div>
+
+    <nav aria-label="Main">
+      <a href="#home" onclick="scrollToSection(event,'home')">Home</a>
+      <a href="#about" onclick="scrollToSection(event,'about')">About</a>
+      <a href="#projects" onclick="scrollToSection(event,'projects')">Projects</a>
+      <a href="#contact" onclick="scrollToSection(event,'contact')">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="home" class="hero">
+      <div class="eyebrow">Creative Showroom</div>
+      <h2>Welcome to Muneb’s Creative Showroom</h2>
+      <p>Explore a curated selection of interactive projects — each card is a small stage for thoughtful design, animation, and real-world ideas. Click a project to open its showcase page with full details and visuals.</p>
+
+      <div class="cta-row">
+        <a class="btn" href="#projects" onclick="scrollToSection(event,'projects')">Browse Projects</a>
+        <a class="btn secondary" href="#about" onclick="scrollToSection(event,'about')">About Me</a>
+      </div>
+    </section>
+
+    <section id="about" style="margin-top:28px; text-align:center;">
+      <div style="display:flex; gap:20px; align-items:center; justify-content:center; flex-wrap:wrap">
+        <img src="profile.jpg" alt="Muneb Sher Dil" style="width:120px;height:120px;border-radius:999px;object-fit:cover;border:3px solid var(--accent1);box-shadow:0 10px 30px rgba(36,214,192,0.08)">
+        <div style="max-width:720px;text-align:left">
+          <h3 style="color:var(--accent2); margin-bottom:6px">Hi, I'm Muneb</h3>
+          <p style="color:var(--muted);line-height:1.6">
+            I build modern web experiences with attention to detail — clean layouts, smooth animations and usable interfaces. I enjoy learning new tools and making projects that feel polished and purposeful.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" style="margin-top:40px;">
+      <div class="section-title">
+        <h3>Featured Projects</h3>
+      </div>
+      <div class="grid">
+        <!-- Windmill (opens windmill.html) -->
+        <div class="card" onclick="openPage('windmill.html')">
+          <img src="windmill.jpg" alt="Windmill Project" onerror="this.src='https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=900&q=80'">
+          <h4>Windmill Energy</h4>
+          <p>A clean-energy showcase exploring design, simulation, and monitoring for modern wind turbines.</p>
+        </div>
+
+        <!-- AI Assistant -->
+        <div class="card" onclick="openPage('ai.html')">
+          <img src="ai.jpg" alt="AI Assistant" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80'">
+          <h4>AI Assistant</h4>
+          <p>An interactive assistant prototype with conversational UI and demonstration scripts.</p>
+        </div>
+
+        <!-- Solar Dashboard -->
+        <div class="card" onclick="openPage('solar.html')">
+          <img src="solar.jpg" alt="Solar Dashboard" onerror="this.src='https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=900&q=80'">
+          <h4>Solar Dashboard</h4>
+          <p>Dashboard UI for solar generation analytics, real-time charts, and performance insights.</p>
+        </div>
+
+        <!-- Weather App -->
+        <div class="card" onclick="openPage('weather.html')">
+          <img src="weather.jpg" alt="Weather App" onerror="this.src='https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=900&q=80'">
+          <h4>Weather App</h4>
+          <p>Clean weather UI with dynamic backgrounds and smooth transitions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:40px; text-align:center;">
+      <h3 style="color:var(--accent2)">Get in touch</h3>
+      <p style="color:var(--muted)">Email: <a style="color:var(--accent1);text-decoration:none" href="mailto:muneebsherdil78@gmail.com">muneebsherdil78@gmail.com</a></p>
+    </section>
+
+    <div style="margin-top:36px; text-align:center;">
+      <div class="spinner" aria-hidden="true"></div>
+    </div>
+
+    <footer>
+      © 2025 Muneb Sher Dil · Built with care • Hosted on GitHub Pages
+    </footer>
+  </main>
+
+  <script>
+    // Navigation scroll helper
+    function scrollToSection(e,id){
+      if(e) e.preventDefault();
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
     }
 
-    section {
-      padding: 100px 10%;
-      min-height: 100vh;
+    // Open project in same tab (each project page is a separate HTML file)
+    function openPage(url){
+      window.location.href = url;
+    }
+
+    // Optional: hide spinner after short delay (for demo aesthetics)
+    window.addEventListener('load', ()=> {
+      setTimeout(()=> {
+        document.querySelectorAll('.spinner').forEach(s => s.style.display = 'none');
+      }, 1200);
+    });
+  </script>
+</body>
+            </html>      min-height: 100vh;
     }
 
     .hero {
