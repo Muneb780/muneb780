@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muneb's Puzzle Game</title>
+  <style>
+    body {
+      margin: 0; background: #0f0f1e; color: white;
+      font-family: 'Poppins', sans-serif; text-align: center;
+      padding-top: 50px;
+    }
+    h1 { font-size: 2.5rem; color: #b084ff; margin-bottom: 20px; }
+    #puzzle {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+      margin: 30px auto;
+      width: fit-content;
+      border: 5px solid #b084ff;
+      border-radius: 15px;
+      padding: 10px;
+      background: #1a1a2e;
+    }
+    .tile {
+      background: #b084ff;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.3s;
+      user-select: none;
+    }
+    .tile:hover { background: #ff6bcb; transform: scale(1.1); }
+    .empty { background: transparent !important; }
+    button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: linear-gradient(45deg, #b084ff, #ff6bcb);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .win {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      z-index: 999;
+    }
+    .win h2 { color: #ff6bcb; text-shadow: 0 0 20px #b084ff; }
+  </style>
+</head>
+<body>
+
+  <h1>8-Puzzle Game</h1>
+  <p>Arrange 1 to 8 → Win!</p>
+  <div id="puzzle"></div>
+  <button onclick="shuffle()">New Game</button>
+
+  <div class="win" id="win">
+    <h2>YOU WIN!</h2>
+    <button onclick="shuffle(); document.getElementById('win').style.display='none'">Play Again</button>
+  </div>
+
+  <script>
+    const puzzle = document.getElementById('puzzle');
+    let tiles = [1,2,3,4,5,6,7,8,''];
+    const winState = [1,2,3,4,5,6,7,8,''];
+
+    function render() {
+      puzzle.innerHTML = '';
+      tiles.forEach((num, i) => {
+        const tile = document.createElement('div');
+        tile.className = 'tile' + (num === '' ? ' empty' : '');
+        tile.textContent = num || '';
+        tile.onclick = () => move(i);
+        puzzle.appendChild(tile);
+      });
+    }
+
+    function move(pos) {
+      const empty = tiles.indexOf('');
+      const valid = [pos-1, pos+1, pos-3, pos+3];
+      if (valid.includes(empty)) {
+        [tiles[pos], tiles[empty]] = [tiles[empty], tiles[pos]];
+        render();
+        if (tiles.join() === winState.join()) {
+          setTimeout(() => document.getElementById('win').style.display = 'flex', 300);
+          confetti({ particleCount: 200, spread: 70, origin: { y: 0.6 } });
+        }
+      }
+    }
+
+    function shuffle() {
+      for (let i = 0; i < 100; i++) {
+        const empty = tiles.indexOf('');
+        const moves = [empty-1, empty+1, empty-3, empty+3].filter(m => m >= 0 && m < 9);
+        const rand = moves[Math.floor(Math.random() * moves.length)];
+        [tiles[empty], tiles[rand]] = [tiles[rand], tiles[empty]];
+      }
+      render();
+    }
+
+    shuffle();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>
