@@ -1,40 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Windmill Project - Muneb Sher Dil</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Windmill Energy — Muneb Sher Dil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0d0d1a;
-      color: #e0e0e0;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
+    :root{ --bg:#051018; --accent:#24d6c0; --accent2:#2bb6ff; --muted:#9fbfcf; --card:#071323 }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins',sans-serif;background:var(--bg);color:#e8fbff;line-height:1.7;padding-bottom:60px}
+    header{position:sticky;top:0;z-index:50;background:rgba(5,10,18,0.85);backdrop-filter:blur(8px);padding:14px 18px;display:flex;align-items:center;gap:12px}
+    header a{color:var(--accent);text-decoration:none;font-weight:600}
+    .wrap{max-width:1000px;margin:48px auto;padding:20px}
+    .spinner{width:90px;height:90px;border-radius:50%;border:7px solid rgba(255,255,255,0.06);border-top:7px solid var(--accent);margin:80px auto;animation:spin 1.6s linear infinite,glow 2s ease-in-out infinite alternate}
+    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    @keyframes glow{from{box-shadow:0 0 10px var(--accent)}to{box-shadow:0 0 24px var(--accent2)}}
+    .content{display:none;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:32px;border-radius:14px;box-shadow:0 20px 60px rgba(2,8,20,0.6)}
+    .hero-img{width:100%;border-radius:12px;object-fit:cover;margin-bottom:18px}
+    .title{color:var(--accent2);font-size:28px;margin-bottom:8px}
+    .lede{color:var(--muted);margin-bottom:14px}
+    .article p{color:#d9f6f4;margin-bottom:14px;text-align:justify}
+    .back{display:inline-block;margin-top:18px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#042;text-decoration:none;font-weight:700}
+    @media(max-width:700px){.wrap{margin:28px 14px;padding:16px}}
+  </style>
+</head>
+<body>
+  <header><a href="index.html">← Back to Showroom</a></header>
 
-    header {
-      padding: 25px;
-      background: rgba(25,25,40,0.9);
-      box-shadow: 0 2px 15px rgba(0,0,0,0.3);
-    }
+  <div class="wrap">
+    <div class="spinner" id="spinner" aria-hidden="true"></div>
 
-    header a {
-      color: #b084ff;
-      text-decoration: none;
-      font-weight: 600;
-    }
+    <article class="content" id="content">
+      <img class="hero-img" src="windmill.jpg" alt="Windmill Project" onerror="this.src='https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=1200&q=80'">
+      <h1 class="title">Windmill Energy — Design & Simulation</h1>
+      <div class="lede">A deep exploration of renewable wind energy: design choices, simulation insights, and real-world considerations for efficient turbine systems.</div>
 
-    .spinner {
-      margin: 50px auto;
-      width: 80px;
-      height: 80px;
-      border: 6px solid rgba(255,255,255,0.1);
-      border-top: 6px solid #b084ff;
-      border-radius: 50%;
-      animation: spin 1.8s linear infinite, glow 2s ease-in-out infinite alternate;
+      <!-- ~500+ words detailed article -->
+      <div class="article">
+        <p>Wind power stands at the intersection of engineering precision and environmental stewardship. The Windmill Energy project presented here is more than a visual showcase — it is an investigation into how carefully engineered structure, aerodynamic optimization, and responsive control systems can transform variable wind into dependable output. Contemporary wind turbines blend art and science: sculpted blades minimize turbulence, tower geometry maximizes exposure to steady wind layers, and advanced control systems maintain efficiency across shifting conditions.</p>
+
+        <p>At the heart of performance is the blade design. Small changes to chord length, twist distribution, and airfoil profile can significantly alter lift-to-drag ratios. This project uses iterative modelling to test variations under simulated wind profiles. By coupling lightweight composite materials with optimized blade curvature, turbines can operate at lower cut-in speeds — meaning they produce useful power even in less windy regions. Minimizing mass while maintaining structural strength reduces inertia and improves responsiveness to gusts, enhancing safety and longevity.</p>
+
+        <p>Another critical element is the hub-and-nacelle assembly. Efficient bearings, coupled with smart yaw control, ensure that blade orientation is always optimal relative to the wind vector. Integrated sensors provide real-time data on wind speed, turbulence intensity, rotational velocity, and structural vibration. This telemetry feeds into a control layer that adjusts pitch and yaw to stabilize output and prevent overspeed conditions. The project’s UI showcases how these telemetry streams can be visualized and interpreted by operators to make informed decisions quickly.</p>
+
+        <p>Beyond mechanics, siting and environmental integration play a pivotal role. A turbine’s location determines available wind shear, turbulence, and wake interactions with neighboring turbines. In the design phase, computational fluid dynamics (CFD) simulations help identify ideal placements that minimize wake losses while maximizing farm-wide yield. Additionally, attention to ecological impact, noise reduction, and visual aesthetics ensures community acceptance and sustainable long-term operation.</p>
+
+        <p>This demonstration also includes a small-scale prototype simulation that models transient events — gusts, direction shifts, and grid-integration scenarios. By simulating grid faults and generator behavior, the system tests protective strategies and reactive controls that keep power flow stable. The result is a resilient design philosophy that combines mechanical robustness, intelligent control software, and human-centered dashboards for monitoring.</p>
+
+        <p>Finally, the project emphasizes education and accessibility. The site’s visualizations translate technical metrics into approachable graphics so non-specialist stakeholders — local planners, students, or community members — can understand the benefits and trade-offs. By combining rigorous engineering with clear communication, the Windmill Energy project demonstrates how technical innovation becomes a public good: reliable clean energy that is efficient, maintainable, and respectful of the environment.</p>
+      </div>
+
+      <a class="back" href="index.html">Back to Showroom</a>
+    </article>
+  </div>
+
+  <script>
+    // Simulated load: show spinner then content
+    window.addEventListener('load', ()=> {
+      setTimeout(()=> {
+        document.getElementById('spinner').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        window.scrollTo({top:0,behavior:'smooth'});
+      }, 1400); // 1400ms gives a brief loading feel
+    });
+  </script>
+</body>
+</html>      animation: spin 1.8s linear infinite, glow 2s ease-in-out infinite alternate;
     }
 
     @keyframes spin {
