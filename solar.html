@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Solar Dashboard — Muneb Sher Dil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body{background:#051018;color:#e8fbff;font-family:'Poppins',sans-serif;margin:0;padding-bottom:60px}
+    header{padding:16px;background:rgba(5,10,18,0.85)}
+    header a{color:#24d6c0;text-decoration:none}
+    .wrap{max-width:980px;margin:30px auto;padding:20px}
+    .spinner{width:76px;height:76px;border-radius:50%;border:7px solid rgba(255,255,255,0.06);border-top:7px solid #2bb6ff;margin:60px auto;animation:spin 1.6s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .content{display:none;padding:24px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px}
+    h1{color:#24d6c0}
+    p{color:#cfeff0}
+  </style>
+</head>
+<body>
+  <header><a href="index.html">← Back</a></header>
+  <div class="wrap">
+    <div class="spinner" id="s"></div>
+    <div class="content" id="c">
+      <h1>Solar Dashboard</h1>
+      <p>This dashboard concept visualizes solar generation, battery state-of-charge, and forecasted yield. It includes card-based panels, quick filters, and responsive charts (charts are mocked here for demo). The design emphasizes clarity and quick-read metrics for operations teams.</p>
+    </div>
+  </div>
+
+  <script>window.addEventListener('load', ()=> setTimeout(()=>{document.getElementById('s').style.display='none';document.getElementById('c').style.display='block'},900));</script>
+</body>
+</html>
