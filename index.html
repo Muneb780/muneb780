@@ -2,149 +2,603 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Muneb's Portfolio</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 { font-size: 3rem; margin: 20px 0; }
-    p { font-size: 1.3rem; max-width: 600px; margin: 0 auto 30px; }
-    .btn {
-      background: #000;
-      color: white;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      margin: 20px;
-      transition: 0.3s;
-    }
-    .btn:hover { transform: scale(1.1); background: #333; }
-    .card {
-      background: white;
-      color: #333;
-      padding: 25px;
-      border-radius: 15px;
-      margin: 20px auto;
-      max-width: 600px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    .confetti-btn {
-      background: linear-gradient(45deg, #ff6b6b, #feca57);
-      font-weight: bold;
-      font-size: 1.5rem;
-      padding: 18px 40px;
-      margin-top: 30px;
-    }
-  </style>
-</head>
-<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muneb Sher Dil | Portfolio</title>
 
-  <h1>Hi, I'm Muneb</h1>
-  <p>Welcome to my personal portfolio website!</p>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   
-  <button class="btn" onclick="window.open('https://github.com/muneb780', '_blank')">
-    My GitHub
-  </button>
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/a2e0e9f6f6.js" crossorigin="anonymous"></script>
 
-  <div class="card">
-    <h2>About Me</h2>
-    <p>I'm learning web development and exploring how to build amazing websites. This is my first personal site — made using GitHub Pages!</p>
-  </div>
+  <style>
+    /* 🌙 Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
 
-  <div class="card">
-    <h2>My Projects</h2>
-    <p>Coming soon... Stay tuned!</p>
-  </div>
+    body {
+      background-color: #0f172a;
+      color: #f1f5f9;
+      transition: background 0.5s, color 0.5s;
+    }
 
-  <!-- FUN INTERACTIVE BUTTON -->
-  <button class="btn confetti-btn" id="partyBtn">
-    Click Me for Magic!
-  </button>
+    body.light-mode {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
 
-  <!-- Confetti Library -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    /* 🌐 Navigation Bar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: background 0.3s;
+    }
 
-  <script>
-    const button = document.getElementById('partyBtn');
+    body.light-mode header {
+      background: rgba(248, 250, 252, 0.8);
+    }
 
-    button.addEventListener('click', () => {
-      // Play sound
-      const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3');
-      audio.play();
+    .logo {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: var(--accent-color);
+      letter-spacing: 1px;
+    }
 
-      // Trigger confetti
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#ff6b6b', '#feca57', '#48dbfb', '#1dd1a1', '#ff9ff3']
-      });
-
-      // Change button text
-      button.innerHTML = 'WOW! Thanks!';
-      setTimeout(() => {
-        button.innerHTML = 'Click Again!';
-      }, 2000);
-    });
-  </script>
-
-</body>
-</html>      padding: 10px 20px;
-      border-radius: 5px;
+    nav a {
+      margin: 0 15px;
+      color: inherit;
       text-decoration: none;
-      transition: 0.3s;
+      font-weight: 500;
+      transition: color 0.3s;
     }
-    a.button:hover {
-      background: #5563DE;
+
+    nav a:hover {
+      color: #6366f1;
     }
-    footer {
-      margin-top: 30px;
+
+    /* 🌓 Theme Toggle */
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.3em;
+    }
+
+    /* 🏠 Hero Section */
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    #home {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+    }
+
+    #home h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      animation: fadeInDown 1s ease;
+    }
+
+    #home p {
+      font-size: 1.2em;
+      opacity: 0.8;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 👤 About Section */
+    #about {
+      background-color: #111827;
+      padding: 120px 20px;
+    }
+
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1000px;
+    }
+
+    .about-container img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #6366f1;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .about-text {
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .about-text h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      color: #6366f1;
+    }
+
+    .about-text p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    /* 💼 Projects Section */
+    #projects {
+      background: #0f172a;
+      padding: 100px 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+    }
+
+    .project-card {
+      background: #1e293b;
+      border-radius: 15px;
       padding: 20px;
-      font-size: 0.9em;
-      background: rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    .project-card h3 {
+      color: #6366f1;
+      margin-bottom: 10px;
+    }
+
+    /* 📧 Contact Section */
+    #contact {
+      background: #111827;
+      padding: 100px 20px;
+    }
+
+    #contact h2 {
+      color: #6366f1;
+      margin-bottom: 20px;
+    }
+
+    .contact-box {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+    }
+
+    .contact-box p {
+      font-size: 1.1em;
+    }
+
+    .contact-box a {
+      color: #6366f1;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* 📱 Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-container {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
-<body>
 
+<body>
   <header>
-    <h1>Hi, I'm Muneb 👋</h1>
-    <p>Welcome to my personal portfolio website!</p>
-    <a href="https://github.com/Muneb780" class="button">My GitHub</a>
+    <div class="logo">Muneb Sher Dil</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <i class="fas fa-moon"></i>
+    </div>
   </header>
 
-  <div class="section">
-    <h2>About Me</h2>
-    <p>I'm learning web development and exploring how to build amazing websites. This is my first personal site — made using GitHub Pages!</p>
-  </div>
+  <!-- 🏠 Home -->
+  <section id="home">
+    <h1>Hi, I'm <span style="color:#6366f1;">Muneb</span></h1>
+    <p>Web Developer in training — exploring creativity and code!</p>
+  </section>
 
-  <div class="section">
+  <!-- 👤 About -->
+  <section id="about">
+    <div class="about-container">
+      <img src="muneb.jpg" alt="Muneb's Photo">
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>Hi! I'm <strong>Muneb Sher Dil</strong> from <strong>Pakistan</strong>.  
+        I'm passionate about learning <strong>web development</strong> and creating clean, modern websites.  
+        I love experimenting with new technologies and improving my design skills every day.  
+        This is my first personal website — built with HTML, CSS, and love ❤️.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 💼 Projects -->
+  <section id="projects">
     <h2>My Projects</h2>
-    <p>Here are some of my future projects that I’ll add soon:</p>
-    <ul style="text-align:left; display:inline-block;">
-      <li>🌐 Personal Portfolio Website</li>
-      <li>📱 Simple Mobile App (coming soon)</li>
-      <li>🤖 AI Chatbot Experiment</li>
-    </ul>
-  </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Personal Portfolio</h3>
+        <p>My first portfolio website built using HTML, CSS, and GitHub Pages.</p>
+      </div>
+      <div class="project-card">
+        <h3>Future Project</h3>
+        <p>Coming soon — something amazing I’m currently working on!</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="section">
-    <h2>Contact</h2>
-    <p>📧 Email: yourname@example.com</p>
-    <p>💬 Connect with me on <a href="https://github.com/Muneb780" target="_blank">GitHub</a></p>
-  </div>
+  <!-- 📧 Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-box">
+      <p>Feel free to reach out via email:</p>
+      <p><a href="mailto:muneebsherdil78@gmail.com">muneebsherdil78@gmail.com</a></p>
+    </div>
+  </section>
 
-  <footer>
-    <p>© 2025 Muneb — Built with ❤️ using GitHub Pages</p>
-  </footer>
-
+  <script>
+    // 🌓 Theme Toggle Function
+    function toggleTheme() {
+      const body = document.body;
+      const icon = document.querySelector('.theme-toggle i');
+      body.classList.toggle('light-mode');
+      if (body.classList.contains('light-mode')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+      }
+    }
+  </script>
 </body>
 </html>
+    /* About */
+    .about-grid{ display:grid; grid-template-columns: 1fr 320px; gap:18px; align-items:center; }
+    .about-text p{ color:var(--muted); font-size:16px; margin:0 0 10px 0; }
+    .skill-list{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .skill{ padding:8px 10px; border-radius:10px; background:var(--glass); color:var(--text); font-weight:600; }
+
+    /* Projects */
+    .project-grid{ margin-top:12px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:14px; }
+    .project{
+      padding:16px; border-radius:12px; overflow:hidden; position:relative;
+      transition: transform 280ms ease, box-shadow 280ms ease;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    }
+    .project:hover{ transform: translateY(-8px); box-shadow: 0 24px 60px rgba(2,6,23,0.5); }
+    .project h3{ margin:0 0 6px 0; color:var(--accent); }
+    .project p{ color:var(--muted); font-size:14px; margin:0 0 12px 0; }
+    .project .proj-tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+    .tag{ background:var(--glass-2); padding:6px 8px; border-radius:8px; font-weight:600; font-size:12px; color:var(--muted); }
+
+    .proj-actions{ display:flex; gap:8px; margin-top:6px; }
+    .link-btn{ padding:8px 10px; border-radius:10px; border:0; cursor:pointer; background:transparent; color:var(--text); font-weight:700; text-decoration:none; }
+    .link-btn.ghost{ border:1px solid rgba(255,255,255,0.04); }
+
+    /* Contact */
+    .contact-grid{ display:grid; grid-template-columns: 1fr 360px; gap:18px; }
+    .contact-card{ padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent); }
+    .contact-card p{ color:var(--muted); }
+    .mailto { display:flex; gap:8px; align-items:center; margin-top:12px; }
+    .mailto input{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text); padding:10px; border-radius:10px; width:100%; }
+    .small { font-size:13px; color:var(--muted); }
+
+    /* Footer */
+    footer{ margin-top:28px; text-align:center; color:var(--muted); font-size:13px; }
+
+    /* ---------- Animations & Reveal ---------- */
+    .reveal{ opacity:0; transform: translateY(18px) scale(0.995); transition: all 650ms cubic-bezier(.2,.9,.25,1); will-change:transform,opacity; }
+    .reveal.visible{ opacity:1; transform: none; }
+
+    /* subtle floating bg shapes (decorative) */
+    .bg-shape {
+      position:absolute; pointer-events:none; z-index:0; opacity:0.08; filter:blur(24px);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:940px){
+      .about-grid{ grid-template-columns: 1fr; }
+      .contact-grid{ grid-template-columns: 1fr; }
+      .hero{ flex-direction:column; align-items:flex-start; }
+      .hero-right{ width:100%; max-width:100%; }
+      header{ width: calc(100% - 28px); }
+    }
+
+    @media (max-width:520px){
+      .hero h2{ font-size:22px; }
+      header{ padding:8px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- top header -->
+  <header role="banner" aria-label="Top Navigation">
+    <a class="brand" href="#home" aria-label="Go to home">
+      <div class="logo">MS</div>
+      <div>
+        <h1>Muneb Sher Dil</h1>
+        <p>Web Developer · Pakistan</p>
+      </div>
+    </a>
+
+    <nav class="toplinks" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="controls" aria-hidden="false">
+      <div class="toggle" role="group" aria-label="Theme toggle">
+        <button id="darkBtn" class="active" title="Dark mode">🌙</button>
+        <button id="lightBtn" title="Light mode">🌤️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <!-- HERO -->
+    <section id="home" class="hero reveal" aria-labelledby="home-title">
+      <div class="hero-left">
+        <h2 id="home-title">Hi, I’m <strong>Muneb Sher Dil</strong> 👋</h2>
+        <p>I build clean, responsive websites and interactive UI. I’m focused on learning modern web development: HTML, CSS, JavaScript and gradually expanding into full-stack.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://github.com/ineb780" target="_blank" rel="noopener">View my GitHub</a>
+          <a class="btn secondary" href="#projects">See Projects</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="profile-card" aria-hidden="false">
+          <div class="profile-top">
+            <div class="avatar">MS</div>
+            <div class="profile-info">
+              <h3>Muneb Sher Dil</h3>
+              <p>Aspiring Web Developer • Pakistan</p>
+            </div>
+          </div>
+
+          <div class="stats" style="margin-top:16px">
+            <div class="stat">
+              <h4>3+</h4>
+              <p class="small">Personal Projects</p>
+            </div>
+            <div class="stat">
+              <h4>HTML & CSS</h4>
+              <p class="small">Daily practice</p>
+            </div>
+            <div class="stat">
+              <h4>JavaScript</h4>
+              <p class="small">Learning</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal" aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">About Me</h2>
+      <div class="card about-grid">
+        <div class="about-text">
+          <p><strong>My name is Muneb Sher Dil.</strong> I’m from <strong>Pakistan</strong> and I’m passionate about learning web development. I enjoy building practical projects, experimenting with UI, and solving problems with code.</p>
+          <p>I’m currently focusing on HTML, CSS, and JavaScript — improving layouts, accessibility, and performance. My goal is to become a confident full-stack developer and contribute to projects that help people.</p>
+
+          <div class="skill-list" aria-hidden="false">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">Responsive Design</div>
+            <div class="skill">Git & GitHub</div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card" style="padding:14px; text-align:left;">
+            <h3 style="margin:0 0 8px 0">Quick Info</h3>
+            <p class="small" style="margin-bottom:8px;">Location: Pakistan</p>
+            <p class="small" style="margin-bottom:8px;">Looking for: Learning and collaboration opportunities</p>
+            <p class="small" style="margin-bottom:8px;">Email: <a href="mailto:muneebsherdil78@gmail.com" style="color:var(--accent); text-decoration:none;">muneebsherdil78@gmail.com</a></p>
+            <div style="margin-top:10px; display:flex; gap:8px;">
+              <a class="btn" href="https://github.com/ineb780" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn secondary" href="#contact">Contact</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal" aria-labelledby="projects-title">
+      <h2 class="section-title" id="projects-title">Selected Projects</h2>
+      <div class="project-grid">
+        <!-- Project 1 -->
+        <article class="project card" aria-labelledby="p1-title">
+          <h3 id="p1-title">Portfolio Website</h3>
+          <p>A modern, responsive portfolio built with HTML/CSS/JS and hosted on GitHub Pages — the site you are viewing now.</p>
+          <div class="proj-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">GitHub Pages</span>
+          </div>
+          <div class="proj-actions">
+            <a class="link-btn" href="https://ineb780.github.io" target="_blank" rel="noopener">Live</a>
+            <a class="link-btn ghost" href="https://github.com/ineb780" target="_blank" rel="noopener">Code</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project card" aria-labelledby="p2-title">
+          <h3 id="p2-title">Calculator App</h3>
+          <p>A simple but polished calculator using vanilla JavaScript. Built to practice DOM manipulation and event handling.</p>
+          <div class="proj-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">UI</span>
+          </div>
+          <div class="proj-actions">
+            <a class="link-btn" href="#" target="_blank" rel="noopener">Live</a>
+            <a class="link-btn ghost" href="#" target="_blank" rel="noopener">Code</a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project card" aria-labelledby="p3-title">
+          <h3 id="p3-title">To-Do App</h3>
+          <p>An interactive to-do list app with add/remove and localStorage support — perfect for learning UI state.</p>
+          <div class="proj-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">localStorage</span>
+          </div>
+          <div class="proj-actions">
+            <a class="link-btn" href="#" target="_blank" rel="noopener">Live</a>
+            <a class="link-btn ghost" href="#" target="_blank" rel="noopener">Code</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal" aria-labelledby="contact-title">
+      <h2 class="section-title" id="contact-title">Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-card card">
+          <h3>Let’s connect</h3>
+          <p>I’d love to hear from you — whether it’s feedback, a project idea, or collaboration. You can email me directly or use the quick copy button below.</p>
+
+          <div class="mailto">
+            <input id="emailInput" type="text" readonly value="muneebsherdil78@gmail.com" aria-label="Email address">
+            <button id="copyBtn" class="btn secondary" title="Copy email to clipboard">Copy Email</button>
+            <a id="mailBtn" class="btn" href="mailto:muneebsherdil78@gmail.com">Send Email</a>
+          </div>
+
+          <p class="small" style="margin-top:10px;">Tip: I reply to email — feel free to say hello and share what you're building!</p>
+        </div>
+
+        <aside class="card" style="padding:18px;">
+          <h4>Social</h4>
+          <p class="small">Find my code and activity on GitHub. I also share code snippets and learning notes.</p>
+          <div style="display:flex; gap:8px; margin-top:12px;">
+            <a class="btn" href="https://github.com/ineb780" target="_blank" rel="noopener">GitHub</a>
+            <!-- Add more social links here -->
+          </div>
+
+          <div style="margin-top:18px">
+            <p class="small">Want to share a project or ask a question? Use the email above — I’ll get back soon.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="reveal">
+      © <span id="year"></span> Muneb Sher Dil · Built with ❤️ • Hosted on GitHub Pages
+    </footer>
+  </main>
+
+  <!-- ---------- Scripts: theme toggle, reveal, copy ---------- -->
+  <script>
+    (function(){
+      // Elements
+      const root = document.documentElement;
+      const body = document.body;
+      const darkBtn = document.getElementById('darkBtn');
+      const lightBtn = document.getElementById('lightBtn');
+      const yearEl = document.getElementById('year');
+      const copyBtn = document.getElementById('copyBtn');
+      const emailInput = document.getElementById('emailInput');
+      const mailBtn = document.getElementById('mailBtn');
+
+      // initial year
+      yearEl.textContent = new Date().getFullYear();
+
+      // Theme: load from localStorage or prefers-color-scheme
+      const userPref = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      function applyTheme(theme){
+        if(theme === 'light') {
+          body.classList.add('light');
+          lightBtn.classList.add('active');
+          darkBtn.classList.remove('active');
+        } else {
+          body.classList.remove('light');
+          darkBtn.classList.add('active');
+          lightBtn.classList.remove('active');
+        }
+      }
+
+      // choose initial
+      let theme = userPref || (prefersDark ? 'dark' : 'dark'); // default dark
+      applyTheme(theme);
+
+      // events
+      darkBtn.addEventListener('click', () => { theme = 'dark'; applyTheme(theme); localStorage.setItem('theme','dark'); });
+      lightBtn.addEventListener('click', () => { theme = 'light'; applyTheme(theme); localStorage.setItem('theme','light'); });
+
+      // Copy to clipboard with feedback
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(emailInput.value);
+          copyBtn.textContent = 'Copied!';
+          setTimeout(()=> copyBtn.textContent = 'Copy Email', 1800);
+        } catch (e) {
+          // fallback
+          emailInput.select();
+          document.execCommand('copy');
+          copyBtn.textContent = 'Copied!';
+          setTimeout(()=> copyBtn.textContent = 'Copy Email', 1800);
+        }
+      });
+
+ 
