@@ -1,40 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Muneb's Portfolio</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #74ABE2, #5563DE);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       text-align: center;
+      margin: 0;
+      padding: 20px;
     }
-    header {
-      padding: 60px 20px;
+    h1 { font-size: 3rem; margin: 20px 0; }
+    p { font-size: 1.3rem; max-width: 600px; margin: 0 auto 30px; }
+    .btn {
+      background: #000;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 20px;
+      transition: 0.3s;
     }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
-    .section {
+    .btn:hover { transform: scale(1.1); background: #333; }
+    .card {
       background: white;
       color: #333;
-      margin: 20px;
-      padding: 30px;
-      border-radius: 10px;
+      padding: 25px;
+      border-radius: 15px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-    a.button {
-      background: #333;
-      color: white;
-      padding: 10px 20px;
+    .confetti-btn {
+      background: linear-gradient(45deg, #ff6b6b, #feca57);
+      font-weight: bold;
+      font-size: 1.5rem;
+      padding: 18px 40px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hi, I'm Muneb</h1>
+  <p>Welcome to my personal portfolio website!</p>
+  
+  <button class="btn" onclick="window.open('https://github.com/muneb780', '_blank')">
+    My GitHub
+  </button>
+
+  <div class="card">
+    <h2>About Me</h2>
+    <p>I'm learning web development and exploring how to build amazing websites. This is my first personal site — made using GitHub Pages!</p>
+  </div>
+
+  <div class="card">
+    <h2>My Projects</h2>
+    <p>Coming soon... Stay tuned!</p>
+  </div>
+
+  <!-- FUN INTERACTIVE BUTTON -->
+  <button class="btn confetti-btn" id="partyBtn">
+    Click Me for Magic!
+  </button>
+
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    const button = document.getElementById('partyBtn');
+
+    button.addEventListener('click', () => {
+      // Play sound
+      const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3');
+      audio.play();
+
+      // Trigger confetti
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#ff6b6b', '#feca57', '#48dbfb', '#1dd1a1', '#ff9ff3']
+      });
+
+      // Change button text
+      button.innerHTML = 'WOW! Thanks!';
+      setTimeout(() => {
+        button.innerHTML = 'Click Again!';
+      }, 2000);
+    });
+  </script>
+
+</body>
+</html>      padding: 10px 20px;
       border-radius: 5px;
       text-decoration: none;
       transition: 0.3s;
